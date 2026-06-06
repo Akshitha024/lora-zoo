@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: zoo — LoRA adapter zoo
+authors:
+  - family-names: Lingampally
+    given-names: Akshitha Reddy
+type: software
+date-released: 2024-11-15
+repository-code: https://github.com/Akshitha024/lora-zoo
+license: MIT
+references:
+  - type: article
+    title: "LoRA: Low-Rank Adaptation of Large Language Models"
+    authors: [{family-names: Hu, given-names: Edward J.}]
+    year: 2022
+    url: https://arxiv.org/abs/2106.09685
+  - type: article
+    title: "S-LoRA: Serving Thousands of Concurrent LoRA Adapters"
+    authors: [{family-names: Sheng, given-names: Ying}]
+    year: 2023
+    url: https://arxiv.org/abs/2311.03285
