@@ -91,10 +91,10 @@ get refreshed by re-running `make sweep && make plots`.
 
 ```mermaid
 flowchart LR
-    A[synth.make_zoo: 6 adapters w/ shared subspace per target] --> B[similarity.pairwise_matrix]
+    A["synth.make_zoo: 6 adapters w/ shared subspace per target"] --> B[similarity.pairwise_matrix]
     A --> C[bench.measure_swap_distribution]
     A --> D[bench.simulated_accuracy_matrix]
-    B --> R[results/sweep.json]
+    B --> R["results/sweep.json"]
     C --> R
     D --> R
     R --> V[viz.charts]
