@@ -10,7 +10,7 @@ venv/
 .ruff_cache/
 .coverage
 
-adapters/
+/adapters/
 data/raw/
 /runs/
 *.safetensors
