@@ -1,0 +1,10 @@
+=== ruff check ===
+All checks passed!
+
+=== ruff format --check ===
+Would reformat: src/zoo/adapters/synth.py
+1 file would be reformatted, 15 files already formatted
+
+=== mypy ===
+Success: no issues found in 13 source files
+

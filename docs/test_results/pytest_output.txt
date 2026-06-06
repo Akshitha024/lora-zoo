@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.14, pytest-9.0.3, pluggy-1.6.0
+rootdir: /Users/mani/Projects/akshitha-portfolio/projects/lora-zoo
+configfile: pyproject.toml
+testpaths: tests
+plugins: cov-7.1.0
+collected 9 items
+
+tests/test_bench.py ....                                                 [ 44%]
+tests/test_synth.py .....                                                [100%]
+
+============================== 9 passed in 0.13s ===============================

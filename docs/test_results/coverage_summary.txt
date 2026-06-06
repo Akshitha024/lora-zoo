@@ -1,0 +1,21 @@
+.........                                                                [100%]
+================================ tests coverage ================================
+______________ coverage: platform darwin, python 3.11.14-final-0 _______________
+
+Name                             Stmts   Miss  Cover
+----------------------------------------------------
+src/zoo/__init__.py                  1      0   100%
+src/zoo/adapters/__init__.py         0      0   100%
+src/zoo/adapters/similarity.py      27      2    93%
+src/zoo/adapters/synth.py           19      0   100%
+src/zoo/bench/__init__.py            0      0   100%
+src/zoo/bench/hot_swap.py           15      0   100%
+src/zoo/bench/win_rate.py           19      0   100%
+src/zoo/cli/__init__.py              0      0   100%
+src/zoo/cli/main.py                 23     23     0%
+src/zoo/runner.py                   24     24     0%
+src/zoo/types.py                    26      0   100%
+src/zoo/viz/__init__.py              0      0   100%
+src/zoo/viz/charts.py              141    141     0%
+----------------------------------------------------
+TOTAL                              295    190    36%
