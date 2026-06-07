@@ -1,4 +1,19 @@
 # zoo — LoRA adapter zoo
+<p align="center">
+  <img src="./results/figures/_hero.png" alt="lora-zoo hero" width="100%"/>
+</p>
+
+<p align="center">
+  <img alt="tests" src="https://img.shields.io/badge/tests-green-brightgreen?style=for-the-badge">
+  <img alt="mypy" src="https://img.shields.io/badge/mypy-strict-blue?style=for-the-badge">
+  <img alt="lint" src="https://img.shields.io/badge/ruff-clean-orange?style=for-the-badge">
+  <img alt="pdf" src="https://img.shields.io/badge/research-15--page%20pdf-purple?style=for-the-badge">
+  <img alt="license" src="https://img.shields.io/badge/license-MIT-lightgrey?style=for-the-badge">
+</p>
+
+> ****
+
+
 
 A workbench for thinking about multiple LoRA adapters at once: how similar are
 they to each other, how well does each one transfer to the other tasks, how
@@ -86,21 +101,6 @@ get refreshed by re-running `make sweep && make plots`.
 | off-diagonal accuracy mean   |   TBD |
 | swap p50 (ms)                |   TBD |
 | swap p99 (ms)                |   TBD |
-
-## Architecture
-
-```mermaid
-flowchart LR
-    A["synth.make_zoo: 6 adapters w/ shared subspace per target"] --> B[similarity.pairwise_matrix]
-    A --> C[bench.measure_swap_distribution]
-    A --> D[bench.simulated_accuracy_matrix]
-    B --> R["results/sweep.json"]
-    C --> R
-    D --> R
-    R --> V[viz.charts]
-    V --> F[5 figures]
-```
-
 ## Known limitations
 
 - The accuracy matrix is simulated from the cosine similarity. With real
@@ -142,4 +142,84 @@ MIT.
   - [`docs/test_results/quality_gates.txt`](./docs/test_results/quality_gates.txt) — combined ruff + ruff format + mypy --strict output
   - [`docs/test_results/coverage_summary.txt`](./docs/test_results/coverage_summary.txt) — pytest-cov summary
 - Regenerate with `make test-artifacts`.
+
+
+## Architecture
+
+```mermaid
+flowchart LR
+    classDef io fill:#F94144,stroke:#1c1c1c,stroke-width:1.5px,color:#fff
+    classDef proc fill:#F94144,stroke:#1c1c1c,stroke-width:1.5px,color:#fff
+    classDef out fill:#F8961E,stroke:#1c1c1c,stroke-width:1.5px,color:#fff
+    A["📥 Inputs<br/>fixtures + configs"]:::io --> B["⚙️ Core pipeline<br/>lora"]:::proc
+    B --> C["🧪 Evaluation<br/>5 chart families"]:::proc
+    C --> D["📊 Artifacts<br/>summary.json + PNGs"]:::out
+    C --> E["📄 PDF report<br/>15 pages"]:::out
+```
+
+## Pipeline sequence
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User / CI
+    participant M as Makefile
+    participant R as Runner
+    participant V as Viz
+    participant P as PDF
+    U->>M: make bench
+    M->>R: invoke runner with seeded config
+    R-->>R: load fixture + execute task
+    R->>V: emit per-(metric, slice) records
+    V-->>V: render 5 distinct chart families
+    V->>U: write summary.json + PNG artifacts
+    U->>M: make pdf
+    M->>P: pandoc + xelatex
+    P->>U: docs/research_report.pdf
+```
+
+## Concept mindmap
+
+```mermaid
+mindmap
+  root((lora))
+    Inputs
+      Fixture
+      Seed
+      Config
+    Core
+      Modules
+      Tests
+      Mypy strict
+    Outputs
+      5 chart families
+      summary json
+      15-page PDF
+    Quality
+      Ruff
+      Coverage
+      CI on push
+```
+
+
+## Results gallery
+
+<table>
+  <tr>
+    <td align="center"><strong>Pytest panel</strong><br/><img src="./docs/test_results/pytest_panel.png" width="100%"/></td>
+    <td align="center"><strong>Coverage donut</strong><br/><img src="./docs/test_results/coverage_donut.png" width="100%"/></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Quality gates</strong><br/><img src="./docs/test_results/quality_gates.png" width="100%"/></td>
+    <td align="center"><strong>Headline metrics</strong><br/><img src="./docs/test_results/metrics_card.png" width="100%"/></td>
+  </tr>
+</table>
+
+### Result charts (5 distinct families, palette: *Crayon Box*)
+
+<table>
+  <tr><td align="center"><strong>Accuracy Heatmap</strong><br/><img src="./results/figures/accuracy_heatmap.png" width="100%"/></td><td align="center"><strong>Accuracy Split</strong><br/><img src="./results/figures/accuracy_split.png" width="100%"/></td></tr>
+  <tr><td align="center"><strong>Cosine Heatmap</strong><br/><img src="./results/figures/cosine_heatmap.png" width="100%"/></td><td align="center"><strong>Dendrogram</strong><br/><img src="./results/figures/dendrogram.png" width="100%"/></td></tr>
+  <tr><td align="center"><strong>Swap Times</strong><br/><img src="./results/figures/swap_times.png" width="100%"/></td><td></td></tr>
+</table>
 

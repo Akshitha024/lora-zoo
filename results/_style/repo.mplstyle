@@ -1,0 +1,21 @@
+# Crayon Box palette for this repo. Re-rendered charts pick this up.
+axes.facecolor: #FFFFFC
+figure.facecolor: #FFFFFC
+axes.edgecolor: #1c1c1c
+axes.labelcolor: #1c1c1c
+axes.titlecolor: #1c1c1c
+axes.titleweight: bold
+xtick.color: #1c1c1c
+ytick.color: #1c1c1c
+grid.color: #E0E0E0
+grid.alpha: 0.5
+axes.grid: True
+axes.spines.top: False
+axes.spines.right: False
+axes.prop_cycle: cycler('color', [#F94144, #F3722C, #F8961E, #F9C74F, #90BE6D, #43AA8B])
+font.family: sans-serif
+font.sans-serif: Helvetica, Arial, DejaVu Sans
+font.size: 10
+figure.titlesize: 14
+figure.titleweight: bold
+image.cmap: Spectral
